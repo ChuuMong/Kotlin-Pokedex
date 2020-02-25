@@ -1,177 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/red"
-    android:fitsSystemWindows="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="homeViewModel"
+            type="dev.marcosfarias.pokedex.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/red">
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:fitsSystemWindows="true">
 
-        <ImageView
-            android:layout_width="260dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_gravity="end"
-            android:layout_marginTop="-90dp"
-            android:layout_marginEnd="-90dp"
-            android:adjustViewBounds="true"
-            android:alpha="0.10"
-            android:background="@drawable/pokeball"
-            android:tint="@color/white" />
+            android:background="@color/red">
 
-        <View
+            <ImageView
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginTop="-90dp"
+                android:layout_marginEnd="-90dp"
+                android:adjustViewBounds="true"
+                android:alpha="0.10"
+                android:background="@drawable/pokeball"
+                android:tint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white" />
+            android:layout_height="260dp"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
 
-    </RelativeLayout>
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:background="@android:color/transparent"
-        app:elevation="0dp">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:minHeight="80dp"
-            app:collapsedTitleTextAppearance="@style/AppTheme.Title.Collapsed"
-            app:expandedTitleTextAppearance="@style/AppTheme.Title.Expanded"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_collapseMode="pin"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed"
-            app:titleEnabled="false">
-
-            <LinearLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:orientation="vertical">
+                android:minHeight="80dp"
+                app:collapsedTitleTextAppearance="@style/AppTheme.Title.Collapsed"
+                app:expandedTitleTextAppearance="@style/AppTheme.Title.Expanded"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed"
+                app:titleEnabled="false">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/main_title"
-                    android:textColor="@color/white"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.Toolbar
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_bottom_border_red"
-                    android:paddingTop="16dp"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetStart="0dp"
-                    app:elevation="0dp">
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:gravity="center"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/background_search_bar"
-                        android:orientation="horizontal">
+                        android:text="@string/main_title"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="16dp"
-                            android:src="@drawable/search" />
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_bottom_border_red"
+                        android:paddingTop="16dp"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:elevation="0dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:textSize="16sp"
-                            android:text="@string/main_search" />
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/background_search_bar"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                    </LinearLayout>
-                </androidx.appcompat.widget.Toolbar>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/search" />
 
-            </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:text="@string/main_search"
+                                android:textSize="16sp" />
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+                        </LinearLayout>
+                    </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.AppBarLayout>
+                </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:overScrollMode="never"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <LinearLayout
-            android:paddingTop="8dp"
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMenu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_bottom_border"
-                android:overScrollMode="never"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="8dp"
-                app:layoutManager="GridLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:itemCount="6"
-                tools:listitem="@layout/item_menu"
-                tools:spanCount="2" />
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundLight"
-                android:padding="16dp">
+                android:paddingTop="8dp">
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_menu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:background="@drawable/rounded_bottom_border"
+                    android:overScrollMode="never"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    app:homeMenus="@{homeViewModel.menus}"
+                    app:layoutManager="GridLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_menu"
+                    tools:spanCount="2" />
+
+                <TextView
+                    android:id="@+id/tv_label_pokemon_news"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
                     android:text="@string/pokemon_news"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_menu" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/view_all"
                     android:textColor="@color/indigo"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_label_pokemon_news"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_label_pokemon_news" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewNews"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/backgroundLight"
-                android:overScrollMode="never"
-                app:layoutManager="GridLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:itemCount="20"
-                tools:listitem="@layout/item_news"
-                tools:spanCount="1" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_news"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundLight"
+                    android:overScrollMode="never"
+                    app:homeNews="@{homeViewModel.news}"
+                    app:layoutManager="GridLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label_pokemon_news"
+                    tools:itemCount="20"
+                    tools:listitem="@layout/item_news"
+                    tools:spanCount="1" />
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

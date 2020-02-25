@@ -1,41 +1,21 @@
 package dev.marcosfarias.pokedex.ui.home
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.marcosfarias.pokedex.R
+import dev.marcosfarias.pokedex.data.repository.HomeRepository
 import dev.marcosfarias.pokedex.model.Menu
 import dev.marcosfarias.pokedex.model.News
 
-class HomeViewModel(private val context: Context) : ViewModel() {
+class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
+    private val _menus = MutableLiveData<List<Menu>>()
+    val menus: LiveData<List<Menu>> get() = _menus
 
-    private val listMenu = MutableLiveData<List<Menu>>()
-    private val listNews = MutableLiveData<List<News>>()
+    private val _news = MutableLiveData<List<News>>()
+    val news: LiveData<List<News>> get() = _news
 
-    fun getListMenu(): LiveData<List<Menu>> {
-        listMenu.value = listOf(
-            Menu(1, context.resources.getString(R.string.menu_item_1), R.color.lightTeal),
-            Menu(1, context.resources.getString(R.string.menu_item_2), R.color.lightRed),
-            Menu(1, context.resources.getString(R.string.menu_item_3), R.color.lightBlue),
-            Menu(1, context.resources.getString(R.string.menu_item_4), R.color.lightYellow),
-            Menu(1, context.resources.getString(R.string.menu_item_5), R.color.lightPurple),
-            Menu(1, context.resources.getString(R.string.menu_item_6), R.color.lightBrown)
-        )
-        return listMenu
-    }
-
-    fun getListNews(): LiveData<List<News>> {
-        listNews.value = listOf(
-            News(),
-            News(),
-            News(),
-            News(),
-            News(),
-            News(),
-            News(),
-            News()
-        )
-        return listNews
+    init {
+        _menus.value = homeRepository.getHomeMenus()
+        _news.value = homeRepository.getHomeNews()
     }
 }
