@@ -1,4 +1,4 @@
-package dev.marcosfarias.pokedex.model
+package dev.marcosfarias.pokedex.data.model
 
 import dev.marcosfarias.pokedex.data.model.MenuType
 

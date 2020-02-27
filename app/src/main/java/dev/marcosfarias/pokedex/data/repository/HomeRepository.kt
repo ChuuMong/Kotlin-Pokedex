@@ -1,8 +1,8 @@
 package dev.marcosfarias.pokedex.data.repository
 
 import dev.marcosfarias.pokedex.data.model.MenuType
-import dev.marcosfarias.pokedex.model.Menu
-import dev.marcosfarias.pokedex.model.News
+import dev.marcosfarias.pokedex.data.model.Menu
+import dev.marcosfarias.pokedex.data.model.News
 
 class HomeRepository {
 

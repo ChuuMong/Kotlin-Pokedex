@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.marcosfarias.pokedex.data.repository.HomeRepository
-import dev.marcosfarias.pokedex.model.Menu
-import dev.marcosfarias.pokedex.model.News
+import dev.marcosfarias.pokedex.data.model.Menu
+import dev.marcosfarias.pokedex.data.model.News
 
 class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
     private val _menus = MutableLiveData<List<Menu>>()

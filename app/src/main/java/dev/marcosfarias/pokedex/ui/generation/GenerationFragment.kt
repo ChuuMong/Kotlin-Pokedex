@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.marcosfarias.pokedex.R
-import dev.marcosfarias.pokedex.model.Generation
+import dev.marcosfarias.pokedex.data.model.Generation
 import kotlinx.android.synthetic.main.fragment_generation.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

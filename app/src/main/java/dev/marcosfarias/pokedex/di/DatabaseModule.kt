@@ -2,7 +2,7 @@ package dev.marcosfarias.pokedex.di
 
 import androidx.room.Room
 import dev.marcosfarias.pokedex.R
-import dev.marcosfarias.pokedex.database.AppDatabase
+import dev.marcosfarias.pokedex.data.local.AppDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 

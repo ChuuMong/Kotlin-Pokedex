@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.marcosfarias.pokedex.R
-import dev.marcosfarias.pokedex.model.Generation
+import dev.marcosfarias.pokedex.data.model.Generation
 import kotlinx.android.synthetic.main.item_generation.view.*
 
 class GenerationAdapter(

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.marcosfarias.pokedex.R
-import dev.marcosfarias.pokedex.model.Generation
+import dev.marcosfarias.pokedex.data.model.Generation
 
 class GenerationViewModel(private val context: Context) : ViewModel() {
 

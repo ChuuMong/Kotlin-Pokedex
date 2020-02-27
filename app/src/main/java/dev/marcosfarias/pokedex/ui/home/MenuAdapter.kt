@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import dev.marcosfarias.pokedex.R
 import dev.marcosfarias.pokedex.data.model.MenuType
-import dev.marcosfarias.pokedex.model.Menu
+import dev.marcosfarias.pokedex.data.model.Menu
 import dev.marcosfarias.pokedex.utils.PokemonColorUtil
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 
