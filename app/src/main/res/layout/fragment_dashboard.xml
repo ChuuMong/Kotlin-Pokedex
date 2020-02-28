@@ -26,7 +26,8 @@
             android:background="@color/lightTeal"
             android:elevation="0dp"
             android:fitsSystemWindows="false"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:pokemonTypeColorBackground="@{dashboardViewModel.pokemon.typeOfPokemon}">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
@@ -35,6 +36,7 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="@color/lightBlue"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:pokemonTypeContentScrimColorFilter="@{dashboardViewModel.pokemon.typeOfPokemon}"
                 app:titleEnabled="false"
                 app:toolbarId="@+id/toolbar">
 

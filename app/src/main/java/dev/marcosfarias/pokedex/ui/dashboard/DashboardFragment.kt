@@ -33,9 +33,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
         dashboardViewModel.pokemon.observe(viewLifecycleOwner, Observer {
             val color = PokemonColorUtil(view.context).getPokemonColor(it.typeOfPokemon)
-            binding.appBar.background = ColorDrawable(color)
-            binding.toolbarLayout.contentScrim?.colorFilter =
-                PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
             requireActivity().window.statusBarColor = color
         })
 

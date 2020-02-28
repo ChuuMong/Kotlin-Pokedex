@@ -2,17 +2,16 @@ package dev.marcosfarias.pokedex.binding
 
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import dev.marcosfarias.pokedex.R
+import dev.marcosfarias.pokedex.utils.PokemonColorUtil
 
 @BindingAdapter("loadImage")
 fun setLoadImageUrl(iv: ImageView, url: String?) {
@@ -23,6 +22,22 @@ fun setLoadImageUrl(iv: ImageView, url: String?) {
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .placeholder(android.R.color.transparent)
         .into(iv)
+}
+
+@BindingAdapter("pokemonTypeColorBackground")
+fun setPokemonTypeColorBackground(view: View, types: List<String>?) {
+    types ?: return
+
+    val color = PokemonColorUtil(view.context).getPokemonColor(types)
+    view.background = ColorDrawable(color)
+}
+
+@BindingAdapter("pokemonTypeContentScrimColorFilter")
+fun setPokemonTypeContentScrimColorFilter(layout: CollapsingToolbarLayout, types: List<String>?) {
+    types ?: return
+
+    val color = PokemonColorUtil(layout.context).getPokemonColor(types)
+    layout.contentScrim?.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
 }
 
 @BindingAdapter(value = ["malePercentage", "femalePercentage"])
