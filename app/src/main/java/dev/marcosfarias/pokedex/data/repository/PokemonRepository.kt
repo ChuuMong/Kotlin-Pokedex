@@ -27,4 +27,15 @@ class PokemonRepository(
             items
         })
     }
+
+    fun getPokemonById(id: String): Result<Pokemon> {
+        return try {
+            val pokemon = localDataSource.getPokemonById(id).let {
+                mapper.toPokemonFromPokemonEntity(it)
+            }
+            Result.Success(pokemon)
+        } catch (e: Exception) {
+            Result.Error(e)
+        }
+    }
 }

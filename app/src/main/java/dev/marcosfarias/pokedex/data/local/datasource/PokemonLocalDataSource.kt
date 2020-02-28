@@ -8,4 +8,5 @@ class PokemonLocalDataSource(private val pokemonDao: PokemonDAO) {
 
     fun addAll(entities: List<PokemonEntity>) = pokemonDao.addAll(entities)
 
+    fun getPokemonById(id: String) = pokemonDao.getById(id)
 }

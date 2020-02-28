@@ -12,7 +12,7 @@ import dev.marcosfarias.pokedex.data.local.entity.PokemonEntity
 interface PokemonDAO {
 
     @Query("SELECT * FROM pokemon WHERE id = :id")
-    fun getById(id: String?): LiveData<PokemonEntity>
+    fun getById(id: String?): PokemonEntity
 
     @Query("SELECT * FROM pokemon")
     fun all(): List<PokemonEntity>

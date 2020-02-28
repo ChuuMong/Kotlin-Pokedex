@@ -17,4 +17,8 @@ class PokemonMapper {
     fun toPokemonEntitiesFromPokemons(items: List<Pokemon>): List<PokemonEntity> {
         return items.map { PokemonEntity.create(it) }
     }
+
+    fun toPokemonFromPokemonEntity(entitiy: PokemonEntity): Pokemon {
+        return entitiy.toEntity()
+    }
 }
