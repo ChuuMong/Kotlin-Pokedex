@@ -1,297 +1,341 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backgroundLight"
-    android:fillViewport="true"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="dashboardViewModel"
+            type="dev.marcosfarias.pokedex.ui.dashboard.DashboardViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundLight"
+        android:fillViewport="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="70dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="140dp" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/label_hp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="HP"
-                android:textSize="16sp" />
+                android:layout_marginTop="16dp"
+                android:text="@string/label_hp"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewHP"
+                android:id="@+id/tv_hp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.hp)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/label_hp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/label_hp"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarHP"
+                android:id="@+id/progress_hp"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="43" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                android:progress="@{dashboardViewModel.pokemon.hp}"
+                app:layout_constraintBottom_toBottomOf="@id/label_hp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/label_hp"
+                tools:progress="43" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_label_attack"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Attack"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="@string/label_attack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_hp" />
 
             <TextView
-                android:id="@+id/textViewAttack"
+                android:id="@+id/tv_attack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.attack)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_attack"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_label_attack"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarAttack"
+                android:id="@+id/progress_attack"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="43" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                android:progress="@{dashboardViewModel.pokemon.attack}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_attack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/tv_label_attack"
+                tools:progress="43" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_label_defense"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Defense"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="@string/label_defense"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_attack" />
 
             <TextView
-                android:id="@+id/textViewDefense"
+                android:id="@+id/tv_defense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.defense)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_defense"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_label_defense"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarDefense"
+                android:id="@+id/progress_defense"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="43" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                android:progress="@{dashboardViewModel.pokemon.defense}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_defense"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/tv_label_defense"
+                tools:progress="43" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_label_sp_atk"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sp. Atk"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="@string/label_sp_atk"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_defense" />
 
             <TextView
-                android:id="@+id/textViewSpAtk"
+                android:id="@+id/tv_sp_atk"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.specialAttack)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_sp_atk"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_label_sp_atk"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarSpAtk"
+                android:id="@+id/progress_sp_atk"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="43" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                android:progress="@{dashboardViewModel.pokemon.specialAttack}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_sp_atk"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/tv_label_sp_atk"
+                tools:progress="43" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_label_sp_def"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sp. Def"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="@string/label_sp_def"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_sp_atk" />
 
             <TextView
-                android:id="@+id/textViewSpDef"
+                android:id="@+id/tv_sp_def"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.specialDefense)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_sp_def"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_label_sp_def"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarSpDef"
+                android:id="@+id/progress_sp_def"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="43" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                android:progress="@{dashboardViewModel.pokemon.specialDefense}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_sp_def"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/tv_label_sp_def"
+                tools:progress="43" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_label_speed"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Speed"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="@string/label_speed"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_sp_def" />
 
             <TextView
-                android:id="@+id/textViewSpeed"
+                android:id="@+id/tv_speed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.speed)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_speed"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_label_speed"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarSpeed"
+                android:id="@+id/progress_speed"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="43" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                android:progress="@{dashboardViewModel.pokemon.speed}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_speed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/tv_label_speed"
+                tools:progress="43" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_label_total"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Total"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="@string/label_total"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_speed" />
 
             <TextView
-                android:id="@+id/textViewTotal"
+                android:id="@+id/tv_total"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:text="@{String.valueOf(dashboardViewModel.pokemon.total)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_total"
+                app:layout_constraintEnd_toEndOf="@id/guideline_value"
+                app:layout_constraintStart_toStartOf="@id/guideline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_label_total"
                 tools:text="55" />
 
             <ProgressBar
-                android:id="@+id/progressBarTotal"
+                android:id="@+id/progress_total"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_weight="4"
                 android:indeterminate="false"
                 android:max="600"
-                android:progress="43" />
-
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Type defenses"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="32dp"
-            android:orientation="horizontal">
-
+                android:progress="@{dashboardViewModel.pokemon.total}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_total"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_value"
+                app:layout_constraintTop_toTopOf="@id/tv_label_total"
+                tools:progress="43" />
 
             <TextView
-                android:id="@+id/textViewTypeDefenses"
+                android:id="@+id/tv_label_type_defences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_type_defences"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_total" />
+
+            <TextView
+                android:id="@+id/tv_type_defences"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
                 android:layout_weight="2"
+                android:text="@{dashboardViewModel.pokemon.YDescription}"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_type_defences"
                 tools:text="65" />
 
-        </LinearLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

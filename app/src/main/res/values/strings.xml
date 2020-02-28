@@ -43,4 +43,12 @@
 
     <string name="default_pokemon_gender">\u2641 87.5%  \u2640 12.5%</string>
     <string name="format_pokemon_gender">\u2641 %1$s  \u2640 %2$s</string>
+    <string name="label_hp">HP</string>
+    <string name="label_attack">Attack</string>
+    <string name="label_defense">Defense</string>
+    <string name="label_sp_atk">Sp. Atk</string>
+    <string name="label_sp_def">Sp. Def</string>
+    <string name="label_speed">Speed</string>
+    <string name="label_total">Total</string>
+    <string name="label_type_defences">Type defenses</string>
 </resources>
