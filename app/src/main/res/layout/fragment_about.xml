@@ -1,224 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backgroundLight"
-    android:fillViewport="true"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp">
+<layout>
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="dashboardViewModel"
+            type="dev.marcosfarias.pokedex.ui.dashboard.DashboardViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundLight"
+        android:fillViewport="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-        <TextView
-            android:id="@+id/textViewDescription"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/lorem_small"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="8dp"
+                android:text="@{dashboardViewModel.pokemon.xDescription}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/lorem_small" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_height_and_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_margin="16dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_label_height"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Height"
-                        android:textSize="16sp" />
-
+                        android:text="@string/label_height"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_label_weight"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textViewHeight"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_height"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{dashboardViewModel.pokemon.height}"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        tools:text="2,3.5 (0.70 cm)" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                        app:layout_constraintStart_toStartOf="@id/tv_label_height"
+                        app:layout_constraintTop_toBottomOf="@id/tv_label_height"
+                        tools:text="2,3.5 (0.70cm)" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_label_weight"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Weight"
-                        android:textSize="16sp" />
-
+                        android:text="@string/label_weight"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_label_height"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textViewWeight"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_weight"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15.2 lbs (6.9kg)"
+                        android:text="@{dashboardViewModel.pokemon.weight}"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_label_weight"
+                        app:layout_constraintTop_toBottomOf="@id/tv_label_weight"
+                        tools:text="15.2 lbs (6.9kg)" />
 
-                </LinearLayout>
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Breeding"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tv_label_breeding"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Gender"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/textViewGender"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="\u2641 87.5%  \u2640 12.5%"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_breeding"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_height_and_weight" />
 
             <TextView
+                android:id="@+id/tv_label_gender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Egg Groups"
-                android:textSize="16sp" />
-
+                android:layout_marginTop="8dp"
+                android:text="@string/label_gender"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_gender"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_breeding" />
 
             <TextView
-                android:id="@+id/textViewEggGroups"
+                android:id="@+id/tv_gender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:femalePercentage="@{dashboardViewModel.pokemon.femalePercentage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@id/tv_label_gender"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_breeding"
+                app:malePercentage="@{dashboardViewModel.pokemon.malePercentage}"
                 tools:text="\u2641 87.5%  \u2640 12.5%" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
             <TextView
+                android:id="@+id/tv_label_egg_groups"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Egg Cycle"
-                android:textSize="16sp" />
-
+                android:layout_marginTop="8dp"
+                android:text="@string/label_egg_group"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_egg_groups"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_gender" />
 
             <TextView
-                android:id="@+id/textViewEggCycle"
+                android:id="@+id/tv_egg_groups"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_marginTop="8dp"
+                android:text="@{dashboardViewModel.pokemon.eggGroups}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                tools:text="\u2640 87.5%  \u2642 12.5%" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Location"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/map" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Training"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="32dp"
-            android:orientation="horizontal">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@id/tv_label_egg_groups"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_gender"
+                tools:text="\u2641 87.5%  \u2640 12.5%" />
 
             <TextView
+                android:id="@+id/tv_label_egg_cycle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Base EXP"
-                android:textSize="16sp" />
-
+                android:layout_marginTop="8dp"
+                android:text="@string/label_egg_cycle"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_egg_cycle"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_egg_groups" />
 
             <TextView
-                android:id="@+id/textViewBaseEXP"
+                android:id="@+id/tv_egg_cycle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_marginTop="8dp"
+                android:text="@{dashboardViewModel.pokemon.cycles}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@id/tv_label_egg_cycle"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_egg_groups"
+                tools:text="\u2641 87.5%  \u2640 12.5%" />
+
+            <TextView
+                android:id="@+id/tv_label_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_location"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_egg_cycle" />
+
+            <ImageView
+                android:id="@+id/iv_map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/map"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_location" />
+
+            <TextView
+                android:id="@+id/tv_label_training"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_training"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_map" />
+
+            <TextView
+                android:id="@+id/tv_label_base_exp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_base_exp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_base_exp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_training" />
+
+            <TextView
+                android:id="@+id/tv_base_exp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{dashboardViewModel.pokemon.baseExp}"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@id/tv_label_base_exp"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_training"
                 tools:text="65" />
 
-        </LinearLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

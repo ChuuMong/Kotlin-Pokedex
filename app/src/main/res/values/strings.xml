@@ -30,4 +30,17 @@
     <string name="dashboard_tab_2">Base Stats</string>
     <string name="dashboard_tab_3">Evolution</string>
     <string name="dashboard_tab_4">Moves</string>
+
+    <string name="label_height">Height</string>
+    <string name="label_weight">Weight</string>
+    <string name="label_breeding">Breeding</string>
+    <string name="label_gender">Gender</string>
+    <string name="label_egg_group">Egg Groups</string>
+    <string name="label_egg_cycle">Egg Cycle</string>
+    <string name="label_location">Location</string>
+    <string name="label_training">Training</string>
+    <string name="label_base_exp">Base EXP</string>
+
+    <string name="default_pokemon_gender">\u2641 87.5%  \u2640 12.5%</string>
+    <string name="format_pokemon_gender">\u2641 %1$s  \u2640 %2$s</string>
 </resources>
