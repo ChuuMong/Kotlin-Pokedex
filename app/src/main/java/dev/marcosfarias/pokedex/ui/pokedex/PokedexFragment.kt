@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinardi.android.speeddial.SpeedDialView
 import dev.marcosfarias.pokedex.R
 import dev.marcosfarias.pokedex.databinding.FragmentPokedexBinding
@@ -17,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class PokedexFragment : BaseFragment<FragmentPokedexBinding>() {
     companion object {
         private val TAG = "PokedexFragment"
+        private const val CURRENT_POSITION = "CURRENT_POSITION"
     }
 
     private val pokedexViewModel: PokedexViewModel by viewModel()

@@ -11,11 +11,19 @@ class ListStringConverter {
 
     @TypeConverter
     fun fromString(json: String?): List<String> {
-        return gson.fromJson(json, type)
+        return if (json.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            gson.fromJson(json, type)
+        }
     }
 
     @TypeConverter
     fun fromList(list: List<String?>?): String {
-        return gson.toJson(list, type)
+        return if (list.isNullOrEmpty()) {
+            String.empty()
+        } else {
+            gson.toJson(list, type)
+        }
     }
 }
