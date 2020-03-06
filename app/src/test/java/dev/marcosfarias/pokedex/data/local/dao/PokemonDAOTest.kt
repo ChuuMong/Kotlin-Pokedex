@@ -6,6 +6,10 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.marcosfarias.pokedex.data.local.AppDatabase
 import dev.marcosfarias.pokedex.data.local.entity.PokemonEntity
+import dev.marcosfarias.pokedex.data.model.TestPokemon
+import dev.marcosfarias.pokedex.data.repository.mapper.PokemonMapper
+import dev.marcosfarias.pokedex.getPokemonFromJson
+import dev.marcosfarias.pokedex.toPokemonEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
@@ -21,6 +25,8 @@ import org.koin.core.context.stopKoin
 @RunWith(AndroidJUnit4::class)
 class PokemonDAOTest {
 
+    private val mapper = PokemonMapper()
+
     private lateinit var appDatabase: AppDatabase
     private lateinit var pokemonDao: PokemonDAO
 
@@ -33,7 +39,7 @@ class PokemonDAOTest {
 
     @Test
     fun getPokemons_returnAllPokemons() = runBlocking(Dispatchers.IO) {
-        pokemonDao.addAll(getTestPokemonEntities())
+        pokemonDao.addAll(getPokemonFromJson().map(toPokemonEntity()))
         val pokemons = pokemonDao.all()
 
         assertThat(pokemons[0].name, `is`("Bulbasaur"))
@@ -43,7 +49,7 @@ class PokemonDAOTest {
 
     @Test
     fun getById_returnPokemonFromById() = runBlocking(Dispatchers.IO) {
-        pokemonDao.addAll(getTestPokemonEntities())
+        pokemonDao.addAll(getPokemonFromJson().map(toPokemonEntity()))
         val pokemon = pokemonDao.getById("#002")
 
         assertThat(pokemon.name, `is`("Ivysaur"))
@@ -51,7 +57,7 @@ class PokemonDAOTest {
 
     @Test
     fun setAllPokemons_and_deleteAllPokemons_returnEmptyPokemons() = runBlocking(Dispatchers.IO) {
-        pokemonDao.addAll(getTestPokemonEntities())
+        pokemonDao.addAll(getPokemonFromJson().map(toPokemonEntity()))
         pokemonDao.deleteAll()
 
         val pokemons = pokemonDao.all()
@@ -59,104 +65,15 @@ class PokemonDAOTest {
     }
 
     @Test
-    fun deletePokemon_and_getAllPokemons_returnNotIncludeDeletePokemon() = runBlocking(Dispatchers.IO) {
-        val pokemonEntities = getTestPokemonEntities()
-        pokemonDao.addAll(pokemonEntities)
-        pokemonDao.delete(pokemonEntities[0])
+    fun deletePokemon_and_getAllPokemons_returnNotIncludeDeletePokemon() =
+        runBlocking(Dispatchers.IO) {
+            val pokemonEntities = getPokemonFromJson().map(toPokemonEntity())
+            pokemonDao.addAll(pokemonEntities)
+            pokemonDao.delete(pokemonEntities[0])
 
-        val pokemons = pokemonDao.all()
-        assertThat(pokemons[0].name, `is`(not("Bulbasaur")))
-    }
-
-    private fun getTestPokemonEntities() = listOf(
-        PokemonEntity(
-            "#001",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "Bulbasaur",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ),
-        PokemonEntity(
-            "#002",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "Ivysaur",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-        , PokemonEntity(
-            "#003",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "Venusaur",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-    )
+            val pokemons = pokemonDao.all()
+            assertThat(pokemons[0].name, `is`(not("Bulbasaur")))
+        }
 
     @After
     fun endTest() {

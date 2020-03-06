@@ -5,6 +5,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.marcosfarias.pokedex.data.local.AppDatabase
 import dev.marcosfarias.pokedex.data.local.entity.PokemonEntity
+import dev.marcosfarias.pokedex.getPokemonFromJson
+import dev.marcosfarias.pokedex.toPokemonEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
@@ -34,7 +36,7 @@ class PokemonLocalDataSourceTest {
 
     @Test
     fun addAllPokemons_returnAllPokemons() = runBlocking(Dispatchers.IO) {
-        localDataSource.addAll(getTestPokemonEntities())
+        localDataSource.addAll(getPokemonFromJson().map(toPokemonEntity()))
 
         val pokemons = localDataSource.getPokemons()
         assertThat(pokemons[0].id, `is`("#001"))
@@ -44,101 +46,11 @@ class PokemonLocalDataSourceTest {
 
     @Test
     fun addAllPokemons_returnPokemonById() = runBlocking(Dispatchers.IO) {
-        localDataSource.addAll(getTestPokemonEntities())
+        localDataSource.addAll(getPokemonFromJson().map(toPokemonEntity()))
 
         val pokemon = localDataSource.getPokemonById("#001")
         assertThat(pokemon.name, `is`("Bulbasaur"))
     }
-
-    private fun getTestPokemonEntities() = listOf(
-        PokemonEntity(
-            "#001",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "Bulbasaur",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ),
-        PokemonEntity(
-            "#002",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "Ivysaur",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-        , PokemonEntity(
-            "#003",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "Venusaur",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-    )
 
     @After
     fun endTest() {

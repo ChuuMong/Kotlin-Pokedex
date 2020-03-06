@@ -10,8 +10,8 @@ class PokemonMapper {
         return response.map { it.toEntity() }
     }
 
-    fun toPokemonsFromPokemonEntity(response: List<PokemonEntity>): List<Pokemon> {
-        return response.map { it.toEntity() }
+    fun toPokemonsFromPokemonEntity(entitiy: List<PokemonEntity>): List<Pokemon> {
+        return entitiy.map { it.toEntity() }
     }
 
     fun toPokemonEntitiesFromPokemons(items: List<Pokemon>): List<PokemonEntity> {

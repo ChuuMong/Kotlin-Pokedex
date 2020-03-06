@@ -2,6 +2,7 @@ package dev.marcosfarias.pokedex.data.remote.datasource
 
 import com.google.gson.Gson
 import dev.marcosfarias.pokedex.data.remote.api.PokemonService
+import dev.marcosfarias.pokedex.getJson
 import dev.marcosfarias.pokedex.utils.empty
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -9,7 +10,7 @@ import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
-import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.*
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -54,11 +55,8 @@ class PokemonRemoteDataSourceTest {
         val pokemonsResponse = remoteDataSource.getPokemons()
 
         assertThat(pokemonsResponse.code(), `is`(HttpURLConnection.HTTP_OK))
-    }
-
-    private fun getJson(path: String): String {
-        val uri = this::class.java.classLoader?.getResource(path) ?: return String.empty()
-        return File(uri.path).readText(Charsets.UTF_8)
+        assertThat(pokemonsResponse.body(), `is`(not(nullValue())))
+        assertThat(pokemonsResponse.body()!![0].id, `is`("#001"))
     }
 
     @After
